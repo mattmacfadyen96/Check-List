@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB", {
+mongoose.connect("mongodb+srv://admin-1:Ganondorf96@cluster0-o6b1e.mongodb.net/todolistDB", {
   useNewUrlParser: true
 });
 
@@ -96,7 +96,6 @@ app.get("/:customListName", function(req, res) {
 app.post("/", function(req, res) {
   const itemName = req.body.newItem;
   const listName = req.body.list;
-  console.log(listName);
 
   const newItem = new Item({
     name: itemName
@@ -128,7 +127,6 @@ app.post("/delete", function(req, res) {
       if (err) {
         console.log(err);
       } else {
-        console.log("Deleted the item entry!");
         res.redirect("/");
       }
     });
